@@ -1,11 +1,18 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path');
 const isDev = require('electron-is-dev');
+const path = require('path');
 
 let mainWindow;
 
 const createWindow = () => {
-	mainWindow = new BrowserWindow({ width: 1224, height: 768 });
+	mainWindow = new BrowserWindow({
+		width: 1224,
+		height: 768,
+		webPreferences: {
+			webSecurity: true,
+			preload: path.join(__dirname, 'preload.js'),
+		},
+	});
 	mainWindow.loadURL(
 		isDev
 			? 'http://localhost:3000'
