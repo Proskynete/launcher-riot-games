@@ -1,0 +1,46 @@
+.header {
+	-webkit-app-region: drag;
+	display: block;
+	position: fixed;
+	height: 32px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 1;
+}
+
+.header__controls {
+	height: 100%;
+	width: 100%;
+}
+
+.header__controls__inner {
+	-webkit-app-region: no-drag;
+	display: grid;
+	height: 100%;
+	grid-template-columns: repeat(2, 46px);
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.header__controls__inner .button {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	grid-row: 1 / span 1;
+	width: 100%;
+	cursor: pointer;
+}
+
+.header__controls__inner .button:hover i {
+	color: rgba(255, 255, 255, 0.2);
+}
+
+.header__controls__inner .button.button--min {
+	grid-column: 1;
+}
+
+.header__controls__inner .button.button--close {
+	grid-column: 2;
+}
