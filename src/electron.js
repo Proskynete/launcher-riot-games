@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 
@@ -8,6 +8,10 @@ const createWindow = () => {
 	mainWindow = new BrowserWindow({
 		width: 1224,
 		height: 768,
+		titleBarStyle: 'hidden',
+		frame: false,
+		useContentSize: true,
+		resizable: false,
 		webPreferences: {
 			webSecurity: true,
 			preload: path.join(__dirname, 'preload.js'),
@@ -25,6 +29,7 @@ const createWindow = () => {
 	mainWindow.on('closed', () => (mainWindow = null));
 };
 
+Menu.setApplicationMenu(false);
 app.allowRendererProcessReuse = true;
 app.on('ready', createWindow);
 
