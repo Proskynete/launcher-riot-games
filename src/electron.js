@@ -12,11 +12,13 @@ const createWindow = () => {
 			: `file://${path.join(__dirname, '../build/index.html')}`
 	);
 	if (isDev) {
+		// Open the DevTools
 		mainWindow.webContents.openDevTools();
 	}
 	mainWindow.on('closed', () => (mainWindow = null));
 };
 
+app.allowRendererProcessReuse = true;
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
@@ -24,7 +26,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-	if (mainWindow === null) {
+	if (mainWindow === null || BrowserWindow.getAllWindows().length === 0) {
 		createWindow();
 	}
 });
